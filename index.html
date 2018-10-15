@@ -280,6 +280,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/Handle-JSON-in-Nodejs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ivana">
+      <meta itemprop="description" content="做一只准备过冬的松鼠">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yiiifan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/15/Handle-JSON-in-Nodejs/" itemprop="url">
+                  Handle JSON in Nodejs
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-15 14:01:42 / Modified: 14:02:39" itemprop="dateCreated datePublished" datetime="2018-10-15T14:01:42-04:00">2018-10-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="How-to-haddle-json-file-with-node-js"><a href="#How-to-haddle-json-file-with-node-js" class="headerlink" title="How to haddle json file with node.js"></a>How to haddle json file with node.js</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><ul>
+<li>JSON: JavaScript Object Notation</li>
+<li>a lightweight data format which has become a web standard followed by a majority of web developers across the globe</li>
+<li>represented as a hash of properties and values(for e.g. an Object) or as a list of values (for e.g. an Array).<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// a JSON array</span><br><span class="line">[<span class="string">"nine"</span>, <span class="string">"ten"</span>, <span class="string">"eleven"</span>]</span><br><span class="line"></span><br><span class="line">// a JSON object</span><br><span class="line">&#123; <span class="attr">"nine"</span>: <span class="number">9</span>, <span class="attr">"ten"</span>: <span class="number">10</span>, <span class="attr">"eleven"</span>: <span class="number">11</span> &#125;</span><br><span class="line"></span><br><span class="line">// combine array and object</span><br><span class="line">[&#123;<span class="attr">"name"</span>:<span class="string">"lily"</span>, <span class="attr">"age"</span>:<span class="number">13</span>&#125;, &#123;<span class="attr">"name"</span>:<span class="string">"Ana"</span>, <span class="attr">"age"</span>:<span class="number">15</span>&#125;]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Handling-JSON-Files-in-Node-js"><a href="#Handling-JSON-Files-in-Node-js" class="headerlink" title="Handling JSON Files in Node.js"></a>Handling JSON Files in Node.js</h2><h3 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h3><ul>
+<li>Create a dummy JSON file: dummy.json, and save the same file as demo.txt.<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"username"</span>:<span class="string">"xyz"</span>,</span><br><span class="line">  <span class="attr">"password"</span>:<span class="string">"xyz@123"</span>,</span><br><span class="line">  <span class="attr">"email"</span>:<span class="string">"xyz@xyz.com"</span>,</span><br><span class="line">  <span class="attr">"uid"</span>: <span class="number">1100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h3><ul>
+<li>synchronous: one-way execution wherein there is a <strong>single flow</strong> which executes the JSON file line by line. The file will move to the next statement only after the statement has completed.</li>
+<li>asynchronous: the flow-control will move to the next line by <strong>displaying the concerns over the statement’s completion</strong></li>
+</ul>
+<h3 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h3><ul>
+<li><p>synchronous:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var fs = require("fs");</span><br><span class="line">console.log("\n *STARTING* \n");</span><br><span class="line"></span><br><span class="line">var contents = fs.readFileSync("jsoncontent.json");</span><br><span class="line"></span><br><span class="line">var jsonContent = JSON.parse(contents);</span><br><span class="line"></span><br><span class="line">console.log("User Name:", jsonContent.username);</span><br><span class="line">console.log("Email:", jsonContent.email);</span><br><span class="line">console.log("Password:", jsonContent.password);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>convert JSON to a String</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify(obj)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>convert a String to a JSON object</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = JSON.parse(string);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>trim(): when there are some chances of having any extra space within the JSON string</p>
+</li>
+<li><p>automatically reading a JSON file</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = require("../path/jsonfile.json");</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Adding a new element to an existing JSON object</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var exjson = &#123;'key':'value'&#125;;</span><br><span class="line">//define key value</span><br><span class="line">exjson.key2 = '...abc...';</span><br><span class="line"></span><br><span class="line">//define another key value</span><br><span class="line">exjson[key3] = '...xyz...';</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Traversing through each element within a JSON object</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var exjson = &#123;'key':'...abc...', 'key2':'...xyz...'&#125;;</span><br><span class="line">for(var exKey in exjson) &#123;</span><br><span class="line">  console.log("key:"+exKey+", value:"+exjson[exKey]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>check whether the JSON has a specific key</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var exjson = &#123;'key':'...abc...', 'key2':'...xyz...'&#125;;</span><br><span class="line">if(exjson.hasOwnProperty('key2'))&#123;</span><br><span class="line">    //define here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>delete an element</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var exjson = &#123;'key':'...abc...'&#125;;</span><br><span class="line">delete exjson['key'];</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>asynchronous:</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://www.codementor.io/codementorteam/how-to-use-json-files-in-node-js-85hndqt32" target="_blank" rel="noopener">How to Use JSON files in Node.js</a></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/07/Note-on-JavaScript/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -326,7 +512,7 @@
                 
               
 
-              <time title="Created: 2018-10-07 11:33:02 / Modified: 11:47:45" itemprop="dateCreated datePublished" datetime="2018-10-07T11:33:02-04:00">2018-10-07</time>
+              <time title="Created: 2018-10-07 11:33:02 / Modified: 11:50:45" itemprop="dateCreated datePublished" datetime="2018-10-07T11:33:02-04:00">2018-10-07</time>
             
 
             
@@ -367,7 +553,9 @@
         
           
             <ul>
-<li>JavaScript Essential Training on Linkedin Learning <a href="https://www.linkedin.com/learning/javascript-essential-training-3" target="_blank" rel="noopener">Course Link</a><h3 id="Characteristics"><a href="#Characteristics" class="headerlink" title="Characteristics"></a>Characteristics</h3></li>
+<li>JavaScript Essential Training on Linkedin Learning  <a href="https://www.linkedin.com/learning/javascript-essential-training-3" target="_blank" rel="noopener">Course Link</a></li>
+</ul>
+<h3 id="Characteristics"><a href="#Characteristics" class="headerlink" title="Characteristics"></a>Characteristics</h3><ul>
 <li>event —- response(event handling)</li>
 <li>passive runs immediately when the document is loaded</li>
 <li>interact with console</li>
@@ -397,10 +585,10 @@
 <h3 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h3><h4 id="for-Loops"><a href="#for-Loops" class="headerlink" title="for Loops"></a>for Loops</h4><h4 id="while-Loops"><a href="#while-Loops" class="headerlink" title="while Loops"></a>while Loops</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line"></span><br><span class="line">  statements;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">while</span>(condition);</span><br></pre></td></tr></table></figure>
 <h4 id="break-and-contiue"><a href="#break-and-contiue" class="headerlink" title="break and contiue"></a>break and contiue</h4><ul>
 <li>Break: terminate the current loop</li>
-<li><p>Continue: terminate the current iteration of the loop</p>
-<h4 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h4></li>
-<li><p>srcset(HTML5)</p>
-</li>
+<li>Continue: terminate the current iteration of the loop</li>
+</ul>
+<h4 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h4><ul>
+<li>srcset(HTML5)</li>
 <li>sizes(HTML5)</li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img</a></li>
 </ul>
@@ -765,7 +953,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -782,7 +970,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
