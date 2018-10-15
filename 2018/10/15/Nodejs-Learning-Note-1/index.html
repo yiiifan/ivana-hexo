@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Node.js – Part oneNode.js Essential Training from linkedin learning (Course Link)  Node.js – Part one Introduction Node.js Core 1. Globals 2. Process 3. Standard input and output 4. Global Timing func">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nodejs Learning Note 1">
+<meta property="og:url" content="http://yoursite.com/2018/10/15/Nodejs-Learning-Note-1/index.html">
+<meta property="og:site_name" content="Yiiifan&#39;s Blog">
+<meta property="og:description" content="Node.js – Part oneNode.js Essential Training from linkedin learning (Course Link)  Node.js – Part one Introduction Node.js Core 1. Globals 2. Process 3. Standard input and output 4. Global Timing func">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-15T18:08:31.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nodejs Learning Note 1">
+<meta name="twitter:description" content="Node.js – Part oneNode.js Essential Training from linkedin learning (Course Link)  Node.js – Part one Introduction Node.js Core 1. Globals 2. Process 3. Standard input and output 4. Global Timing func">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/15/Nodejs-Learning-Note-1/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Nodejs Learning Note 1 | Yiiifan's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yiiifan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/Nodejs-Learning-Note-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ivana">
+      <meta itemprop="description" content="做一只准备过冬的松鼠">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yiiifan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Nodejs Learning Note 1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-15 14:07:14 / Modified: 14:08:31" itemprop="dateCreated datePublished" datetime="2018-10-15T14:07:14-04:00">2018-10-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Node-js-–-Part-one"><a href="#Node-js-–-Part-one" class="headerlink" title="Node.js – Part one"></a>Node.js – Part one</h1><p>Node.js Essential Training from linkedin learning <a href="https://www.linkedin.com/learning/node-js-essential-training" target="_blank" rel="noopener">(Course Link)</a><br><!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 --></p>
+<ul>
+<li><a href="#nodejs-part-one">Node.js – Part one</a><ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#nodejs-core">Node.js Core</a><ul>
+<li><a href="#1-globals">1. Globals</a></li>
+<li><a href="#2-process">2. Process</a></li>
+<li><a href="#3-standard-input-and-output">3. Standard input and output</a></li>
+<li><a href="#4-global-timing-functions">4. Global Timing functions</a></li>
+</ul>
+</li>
+<li><a href="#node-modules">Node Modules</a><ul>
+<li><a href="#1-core-modules">1. Core Modules</a></li>
+<li><a href="#2-readline">2. Readline</a></li>
+<li><a href="#3-event-emitter">3. Event Emitter</a></li>
+<li><a href="#3-export-custom-modules">3. Export custom modules</a></li>
+</ul>
+</li>
+<li><a href="#http-module">HTTP Module</a><ul>
+<li><a href="#1-make-a-request">1. Make a request</a></li>
+<li><a href="#2-start-a-server">2. Start a server</a></li>
+<li><a href="#3-servering-files">3. Servering files</a></li>
+<li><a href="#4-servering-json-data">4. Servering JSON data</a></li>
+<li><a href="#5-collecting-post-data">5. Collecting POST data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li>Node.js</li>
+<li>NPM node package manager</li>
+<li>io.js create a fork of node.js project</li>
+<li><p>Node.js 4.0 released, foundation of both node.js and io.js</p>
+</li>
+<li><p>Apache: every request is single-thread, thread waiting for file system/data base finish the last request before it can do anything(blocking)</p>
+</li>
+<li>Node.js: non-blocking event driven IO, only single thread &amp;&amp; multitask, asynchroniously no need for waiting</li>
+</ul>
+<h2 id="Node-js-Core"><a href="#Node-js-Core" class="headerlink" title="Node.js Core"></a>Node.js Core</h2><h3 id="1-Globals"><a href="#1-Globals" class="headerlink" title="1. Globals"></a>1. Globals</h3><ul>
+<li><a href="https://nodejs.org/dist/latest-v8.x/docs/api/globals.html" target="_blank" rel="noopener">Document</a></li>
+</ul>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* node global is also feasible */</span><br><span class="line"><span class="meta">$</span> node</span><br><span class="line"><span class="meta">&gt;</span>console.log("Hello World");</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> node global.js</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Every Node.js file is it’s own module, any variable created in Node.js is scoped only to that module.</li>
+<li>Quote an varible in string:<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hello = <span class="string">"Hello World from Node js"</span>;</span><br><span class="line"><span class="keyword">var</span> justNode = hello.slice(<span class="number">17</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Rock on World from <span class="subst">$&#123;justNode&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(__dirname);</span><br><span class="line"><span class="built_in">console</span>.log(__filename);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Rock on World from <span class="subst">$&#123;path.basename(__filename)&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="2-Process"><a href="#2-Process" class="headerlink" title="2. Process"></a>2. Process</h3><p><a href="https://nodejs.org/dist/latest-v8.x/docs/api/process.html" target="_blank" rel="noopener">Document</a></p>
+<ul>
+<li>collect all info from terminal and save as process.argv<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">grab</span>(<span class="params">flag</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> index = process.argv.indexOf(flag);</span><br><span class="line">	<span class="keyword">return</span> (index === <span class="number">-1</span>) ? <span class="literal">null</span> : process.argv[index+<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> greeting = grab(<span class="string">'--greeting'</span>);</span><br><span class="line"><span class="keyword">var</span> user = grab(<span class="string">'--user'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!user || !greeting) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"You Blew it!"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">`Welcome <span class="subst">$&#123;user&#125;</span>, <span class="subst">$&#123;greeting&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> node app.js --user George --greeting "Hi"</span><br></pre></td></tr></table></figure>
+<h3 id="3-Standard-input-and-output"><a href="#3-Standard-input-and-output" class="headerlink" title="3. Standard input and output"></a>3. Standard input and output</h3><ul>
+<li>using tamplate string <code></code></li>
+<li>process.stdout.write();</li>
+<li>process.stdin.on(‘data’, function(data){ … });</li>
+<li>asynchronious process<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> questions = [</span><br><span class="line">  <span class="string">"What is your name?"</span>,</span><br><span class="line">  <span class="string">"What is your fav hobby?"</span>,</span><br><span class="line">  <span class="string">"What is your prefered programming language?"</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> answers = [];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ask</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">  process.stdout.write(<span class="string">`\n\n\n\n <span class="subst">$&#123;questions[i]&#125;</span>`</span>);</span><br><span class="line">  process.stdout.write(<span class="string">"\n &gt; "</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//listener for data event</span></span><br><span class="line">process.stdin.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//save data in answers variable</span></span><br><span class="line">	answers.push(data.toString().trim());</span><br><span class="line">	<span class="keyword">if</span>(answers.length &lt; questions.length)&#123;</span><br><span class="line"></span><br><span class="line">		ask(answers.length);</span><br><span class="line"></span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">		process.exit();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//listener on exit event</span></span><br><span class="line">process.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  process.stdout.write(<span class="string">"\n\n\n\n"</span>);</span><br><span class="line"></span><br><span class="line">	process.stdout.write(<span class="string">`Go <span class="subst">$&#123;answers[<span class="number">1</span>]&#125;</span> <span class="subst">$&#123;answers[<span class="number">0</span>]&#125;</span> you can finish writing <span class="subst">$&#123;answers[<span class="number">2</span>]&#125;</span> later`</span>);</span><br><span class="line"></span><br><span class="line">	process.stdout.write(<span class="string">"\n\n\n\n"</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">ask(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-Global-Timing-functions"><a href="#4-Global-Timing-functions" class="headerlink" title="4. Global Timing functions"></a>4. Global Timing functions</h3><ul>
+<li>setInterval(function(){…}, waitInterval);</li>
+<li>setTimeout(function(){…}, waitTime);</li>
+<li>clearInterval();</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> waitTime = <span class="number">3000</span>;</span><br><span class="line"><span class="keyword">var</span> currentTime = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> waitInterval = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> percentWaited = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">writeWaitingPercent</span>(<span class="params">p</span>) </span>&#123;</span><br><span class="line">	<span class="comment">//clear the last line and rewrite</span></span><br><span class="line">	process.stdout.clearLine();</span><br><span class="line">	process.stdout.cursorTo(<span class="number">0</span>);</span><br><span class="line">	process.stdout.write(<span class="string">`waiting ... <span class="subst">$&#123;p&#125;</span>%`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> interval = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	currentTime += waitInterval;</span><br><span class="line">	percentWaited = <span class="built_in">Math</span>.floor((currentTime/waitTime) * <span class="number">100</span>);</span><br><span class="line">	writeWaitingPercent(percentWaited);</span><br><span class="line">&#125;, waitInterval);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	clearInterval(interval);</span><br><span class="line">	writeWaitingPercent(<span class="number">100</span>);</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"\n\n done \n\n"</span>);</span><br><span class="line">&#125;, waitTime);</span><br><span class="line"></span><br><span class="line">process.stdout.write(<span class="string">"\n\n"</span>);</span><br><span class="line">writeWaitingPercent(percentWaited);</span><br></pre></td></tr></table></figure>
+<h2 id="Node-Modules"><a href="#Node-Modules" class="headerlink" title="Node Modules"></a>Node Modules</h2><h3 id="1-Core-Modules"><a href="#1-Core-Modules" class="headerlink" title="1. Core Modules"></a>1. Core Modules</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//require can load modules</span></span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"><span class="keyword">var</span> v8 = <span class="built_in">require</span>(<span class="string">'v8'</span>);</span><br><span class="line"></span><br><span class="line">util.log( path.basename(__filename) );</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dirUploads = path.join(__dirname, <span class="string">'www'</span>, <span class="string">'files'</span>, <span class="string">'uploads'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// log with timestamp</span></span><br><span class="line">util.log(dirUploads);</span><br><span class="line"></span><br><span class="line"><span class="comment">//give current info on current memory statistics</span></span><br><span class="line">util.log(v8.getHeapStatistics());</span><br></pre></td></tr></table></figure>
+<h3 id="2-Readline"><a href="#2-Readline" class="headerlink" title="2. Readline"></a>2. Readline</h3><ul>
+<li>Easily control prompting a user with questions and saving answers<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> readline = <span class="built_in">require</span>(<span class="string">'readline'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//create a instance of readline object</span></span><br><span class="line"><span class="keyword">var</span> rl = readline.createInterface(process.stdin, process.stdout);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> realPerson = &#123;</span><br><span class="line">	name: <span class="string">''</span>,</span><br><span class="line">	sayings: []</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">rl.question(<span class="string">"What is the name of a real person? "</span>, <span class="function"><span class="keyword">function</span>(<span class="params">answer</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	realPerson.name = answer;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//set up a prompt and ask question over and over again</span></span><br><span class="line">	rl.setPrompt(<span class="string">`What would <span class="subst">$&#123;realPerson.name&#125;</span> say? `</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//display prompt</span></span><br><span class="line">	rl.prompt();</span><br><span class="line"></span><br><span class="line">	<span class="comment">//liston for any new lines, event will fire when a user submit the answer</span></span><br><span class="line">	rl.on(<span class="string">'line'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">saying</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//saving sayings</span></span><br><span class="line">		realPerson.sayings.push(saying.trim());</span><br><span class="line"></span><br><span class="line">		<span class="comment">//if input is exit, then close the readline instance</span></span><br><span class="line">		<span class="keyword">if</span> (saying.toLowerCase().trim() === <span class="string">'exit'</span>) &#123;</span><br><span class="line">			rl.close();</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			rl.setPrompt(<span class="string">`What else would <span class="subst">$&#123;realPerson.name&#125;</span> say? ('exit' to leave) `</span>);</span><br><span class="line">		    rl.prompt();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">rl.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">//%j replaced with json String</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"%s is a real person that says %j"</span>, realPerson.name, realPerson.sayings);</span><br><span class="line">	process.exit();</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-Event-Emitter"><a href="#3-Event-Emitter" class="headerlink" title="3. Event Emitter"></a>3. Event Emitter</h3><ul>
+<li>pub/sub design pattern</li>
+<li>create listeners for emit custom events</li>
+<li>can get mileage out of it by allowing objects to inherit the EventEmitter<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//add EventEmitter to Person's prototype, Person object inherits all of the functions from EventEmitter</span></span><br><span class="line">util.inherits(Person, EventEmitter);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ben = <span class="keyword">new</span> Person(<span class="string">"Ben Franklin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//argv1--event name, argv2--call back function when event is fired</span></span><br><span class="line">ben.on(<span class="string">'speak'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">said</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>: <span class="subst">$&#123;said&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ben.emit(<span class="string">'speak'</span>, <span class="string">"You may delay, but time will not."</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-Export-custom-modules"><a href="#3-Export-custom-modules" class="headerlink" title="3. Export custom modules"></a>3. Export custom modules</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">file architecture</span><br><span class="line">--lib</span><br><span class="line">|   |</span><br><span class="line">|		--Person.js(saved module here)</span><br><span class="line">|</span><br><span class="line">--BenFranklin.js(import the module and use it)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Person.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">util.inherits(Person, EventEmitter);</span><br><span class="line"></span><br><span class="line"><span class="comment">//export the module</span></span><br><span class="line"><span class="built_in">module</span>.exports = Person;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>BenFranklin.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//when require core modules, simply require by name</span></span><br><span class="line"><span class="comment">//when require a custom module in file system, we have to put the path to the module</span></span><br><span class="line"><span class="keyword">var</span> Person = <span class="built_in">require</span>(<span class="string">"./lib/Person"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ben = <span class="keyword">new</span> Person(<span class="string">"Ben Franklin"</span>);</span><br><span class="line"></span><br><span class="line">ben.on(<span class="string">'speak'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">said</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>: <span class="subst">$&#123;said&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ben.emit(<span class="string">'speak'</span>, <span class="string">"You may delay, but time will not."</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="HTTP-Module"><a href="#HTTP-Module" class="headerlink" title="HTTP Module"></a>HTTP Module</h2><h3 id="1-Make-a-request"><a href="#1-Make-a-request" class="headerlink" title="1. Make a request"></a>1. Make a request</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> https = <span class="built_in">require</span>(<span class="string">"https"</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">	hostname: <span class="string">"en.wikipedia.org"</span>,</span><br><span class="line">	port: <span class="number">443</span>,</span><br><span class="line">	path: <span class="string">"/wiki/George_Washington"</span>,</span><br><span class="line">	method: <span class="string">"GET"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//pass response to anomerous function</span></span><br><span class="line"><span class="keyword">var</span> req = https.request(options, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> responseBody = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Response from server started."</span>);</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">`Server Status: <span class="subst">$&#123;res.statusCode&#125;</span> `</span>);</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Response Headers: %j"</span>, res.headers);</span><br><span class="line"></span><br><span class="line">	res.setEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">	res.once(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(chunk);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	res.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">`--chunk-- <span class="subst">$&#123;chunk.length&#125;</span>`</span>);</span><br><span class="line">		responseBody += chunk;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	res.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		fs.writeFile(<span class="string">"george-washington.html"</span>, responseBody, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (err) &#123;</span><br><span class="line">				<span class="keyword">throw</span> err;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"File Downloaded"</span>);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">req.on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">`problem with request: <span class="subst">$&#123;err.message&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">req.end();</span><br></pre></td></tr></table></figure>
+<h3 id="2-Start-a-server"><a href="#2-Start-a-server" class="headerlink" title="2. Start a server"></a>2. Start a server</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//req: request object, contains info about the requested headers, data along with the request and info about user</span></span><br><span class="line"><span class="comment">//res: blank response obhect</span></span><br><span class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//first argv: response status, 200: successful response</span></span><br><span class="line">	<span class="comment">//second argv: javascript literal of all of the headers  that I'm going to add to this response</span></span><br><span class="line">	<span class="comment">//Content-Type : text/plain</span></span><br><span class="line">	res.writeHead(<span class="number">200</span>, &#123;<span class="string">"Content-Type"</span>: <span class="string">"text/html"</span>&#125;);</span><br><span class="line"></span><br><span class="line">	res.end(<span class="string">`</span></span><br><span class="line"><span class="string">		&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">		&lt;html&gt;</span></span><br><span class="line"><span class="string">			&lt;head&gt;</span></span><br><span class="line"><span class="string">				&lt;title&gt;HTML Response&lt;/title&gt;</span></span><br><span class="line"><span class="string">			&lt;/head&gt;</span></span><br><span class="line"><span class="string">			&lt;body&gt;</span></span><br><span class="line"><span class="string">				&lt;h1&gt;Serving HTML Text&lt;/h1&gt;</span></span><br><span class="line"><span class="string">				&lt;p&gt;<span class="subst">$&#123;req.url&#125;</span>&lt;/p&gt;</span></span><br><span class="line"><span class="string">				&lt;p&gt;<span class="subst">$&#123;req.method&#125;</span>&lt;/p&gt;</span></span><br><span class="line"><span class="string">			&lt;/body&gt;</span></span><br><span class="line"><span class="string">		&lt;/html&gt;</span></span><br><span class="line"><span class="string">	`</span>);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ip address and incoming port for all of our web requests for this server</span></span><br><span class="line">server.listen(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Server listening on port 3000"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="3-Servering-files"><a href="#3-Servering-files" class="headerlink" title="3. Servering files"></a>3. Servering files</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;req.method&#125;</span> request for <span class="subst">$&#123;req.url&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (req.url === <span class="string">"/"</span>) &#123;</span><br><span class="line">		fs.readFile(<span class="string">"./public/index.html"</span>, <span class="string">"UTF-8"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, html</span>) </span>&#123;</span><br><span class="line">			res.writeHead(<span class="number">200</span>, &#123;<span class="string">"Content-Type"</span>: <span class="string">"text/html"</span>&#125;);</span><br><span class="line">			res.end(html);</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//check if string matches the regular expression(//)</span></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.match(<span class="regexp">/.css$/</span>)) &#123;</span><br><span class="line">		<span class="comment">// we have to wait until the entire file is read, and then gonna respond with the entire file</span></span><br><span class="line">		<span class="comment">// create  a readstream</span></span><br><span class="line">		<span class="keyword">var</span> cssPath = path.join(__dirname, <span class="string">'public'</span>, req.url);</span><br><span class="line">		<span class="keyword">var</span> fileStream = fs.createReadStream(cssPath, <span class="string">"UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">		res.writeHead(<span class="number">200</span>, &#123;<span class="string">"Content-Type"</span>: <span class="string">"text/css"</span>&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//piping the readstream to writestream(response)</span></span><br><span class="line">		fileStream.pipe(res);</span><br><span class="line"></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.match(<span class="regexp">/.jpg$/</span>)) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> imgPath = path.join(__dirname, <span class="string">'public'</span>, req.url);</span><br><span class="line">		<span class="keyword">var</span> imgStream = fs.createReadStream(imgPath);</span><br><span class="line"></span><br><span class="line">		res.writeHead(<span class="number">200</span>, &#123;<span class="string">"Content-Type"</span>: <span class="string">"image/jpeg"</span>&#125;);</span><br><span class="line"></span><br><span class="line">		imgStream.pipe(res);</span><br><span class="line"></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		res.writeHead(<span class="number">404</span>, &#123;<span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span>&#125;);</span><br><span class="line">		res.end(<span class="string">"404 File Not Found"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//chain listen commmand</span></span><br><span class="line">&#125;).listen(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"File server running on port 3000"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="4-Servering-JSON-data"><a href="#4-Servering-JSON-data" class="headerlink" title="4. Servering JSON data"></a>4. Servering JSON data</h3><ul>
+<li>create an HTTP API or a server whose primary purpose is to serve JSON data<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">require</span>(<span class="string">"./data/inventory"</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (req.url === <span class="string">"/"</span>) &#123;</span><br><span class="line">		res.writeHead(<span class="number">200</span>, &#123;<span class="string">"Content-Type"</span>: <span class="string">"text/json"</span>&#125;);</span><br><span class="line">	    res.end(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line"></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url === <span class="string">"/instock"</span>) &#123;</span><br><span class="line">		listInStock(res);</span><br><span class="line"></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url === <span class="string">"/onorder"</span>) &#123;</span><br><span class="line">		listOnBackOrder(res);</span><br><span class="line"></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		res.writeHead(<span class="number">404</span>, &#123;<span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span>&#125;);</span><br><span class="line">		res.end(<span class="string">"Whoops... Data not found"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;).listen(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Server listening on port 3000"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">listInStock</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> inStock = data.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> item.avail === <span class="string">"In stock"</span>;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	res.end(<span class="built_in">JSON</span>.stringify(inStock));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">listOnBackOrder</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> onOrder = data.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> item.avail === <span class="string">"On back order"</span>;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	res.end(<span class="built_in">JSON</span>.stringify(onOrder));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-Collecting-POST-data"><a href="#5-Collecting-POST-data" class="headerlink" title="5. Collecting POST data"></a>5. Collecting POST data</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (req.method === <span class="string">"GET"</span>) &#123;</span><br><span class="line">		res.writeHead(<span class="number">200</span>, &#123;<span class="string">"Content-Type"</span>: <span class="string">"text/html"</span>&#125;);</span><br><span class="line">	  fs.createReadStream(<span class="string">"./public/form.html"</span>, <span class="string">"UTF-8"</span>).pipe(res);</span><br><span class="line">		<span class="comment">//collect user's info in form</span></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.method === <span class="string">"POST"</span>) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> body = <span class="string">""</span>;</span><br><span class="line">		<span class="comment">//collect data</span></span><br><span class="line">		req.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">			body += chunk;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		req.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">			res.writeHead(<span class="number">200</span>, &#123;<span class="string">"Content-Type"</span>: <span class="string">"text/html"</span>&#125;);</span><br><span class="line"></span><br><span class="line">			<span class="comment">//after post, show all info user submit</span></span><br><span class="line">			res.end(<span class="string">`</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">				&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">				&lt;html&gt;</span></span><br><span class="line"><span class="string">					&lt;head&gt;</span></span><br><span class="line"><span class="string">						&lt;title&gt;Form Results&lt;/title&gt;</span></span><br><span class="line"><span class="string">					&lt;/head&gt;</span></span><br><span class="line"><span class="string">					&lt;body&gt;</span></span><br><span class="line"><span class="string">						&lt;h1&gt;Your Form Results&lt;/h1&gt;</span></span><br><span class="line"><span class="string">						&lt;p&gt;<span class="subst">$&#123;body&#125;</span>&lt;/p&gt;</span></span><br><span class="line"><span class="string">					&lt;/body&gt;</span></span><br><span class="line"><span class="string">				&lt;/html&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			`</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;).listen(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Form server listening on port 3000"</span>);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/15/Handle-JSON-in-Nodejs/" rel="next" title="Handle JSON in Nodejs">
+                <i class="fa fa-chevron-left"></i> Handle JSON in Nodejs
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">做一只准备过冬的松鼠</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Node-js-–-Part-one"><span class="nav-number">1.</span> <span class="nav-text">Node.js – Part one</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-Core"><span class="nav-number">1.2.</span> <span class="nav-text">Node.js Core</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Globals"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. Globals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Process"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. Process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Standard-input-and-output"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. Standard input and output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Global-Timing-functions"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. Global Timing functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-Modules"><span class="nav-number">1.3.</span> <span class="nav-text">Node Modules</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Core-Modules"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. Core Modules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Readline"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. Readline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Event-Emitter"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. Event Emitter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Export-custom-modules"><span class="nav-number">1.3.4.</span> <span class="nav-text">3. Export custom modules</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Module"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP Module</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Make-a-request"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. Make a request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Start-a-server"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. Start a server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Servering-files"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. Servering files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Servering-JSON-data"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. Servering JSON data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Collecting-POST-data"><span class="nav-number">1.4.5.</span> <span class="nav-text">5. Collecting POST data</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivana</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
